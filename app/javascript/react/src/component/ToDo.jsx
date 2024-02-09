@@ -84,13 +84,13 @@ const ToDo = ({options}) => {
     return (
         <div>
             <h3>
-                To Do {todo.id}
-                <input type="checkbox" checked={done} onChange={handleDone}></input>
+                {todo.id ? `To-Do ${todo.id}` : "Create New To-Do"}
+                {todo.id && <input type="checkbox" checked={done} onChange={handleDone}></input>}
             </h3>
             {!edit && <p>{description}</p>}
             {edit && <textarea onChange={(e) => setDescription(e.target.value)} value={description}/>}
             <br/>
-            {edit && <button onClick={() => setSaving(true)}>Save</button>}
+            {edit && <button onClick={() => setSaving(true)}>{todo.id ? "Save" : "Create"}</button>}
             <div>
                 {!edit && <button disabled={edit} onClick={() => setEdit(true)}>Edit</button>}
                 {!edit && <button disabled={edit} onClick={destroy}>Destroy</button>}
