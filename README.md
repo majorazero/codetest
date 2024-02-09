@@ -42,7 +42,8 @@ Create an application to create, view, update, and destroy ‘todo’ items. The
 If you find that you have completed the earlier items with time to spare, please consider adding the following
 
 ### Suggestions for improvements
-* [ ] Deploy your TODO app to the internet so we can see it in action
+* [x] Deploy your TODO app to the internet so we can see it in action
+    Link: https://roaming-hunger-codetest-800cafe9429a.herokuapp.com/
 * [ ] Test it on Mobile device sizes.
 * [ ] Write unit tests for your code.
 * [ ] Edit this ReadMe with new suggestions for how to improve this code test
