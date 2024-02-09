@@ -6,6 +6,7 @@ import ToDo from "./component/ToDo";
 const App = () => {
     const [todos, setTodos] = useState([]);
     const [addingNewTodo, setAddingNewTodo] = useState(false);
+    const [hideDoneItems, setHideDoneItems] = useState(false);
 
     useEffect(() => {
         getToDos();
@@ -21,7 +22,11 @@ const App = () => {
     }
 
     const todoRenderer = () => {
-        return todos.map((todo, i) => {
+        let tempTodos = [...todos];
+        if (hideDoneItems) {
+            tempTodos = tempTodos.filter((note) => !note.done);
+        }
+        return tempTodos.map((todo, i) => {
             const options = {
                 todo,
                 index: i,
@@ -55,6 +60,10 @@ const App = () => {
             <button disabled={addingNewTodo} onClick={() => setAddingNewTodo(true)}>
                 New Todo
             </button>
+            <button onClick={getToDos}>Refresh</button>
+            <span>
+                <input type="checkbox" value={hideDoneItems} onChange={() => setHideDoneItems(!hideDoneItems)}/> Hide Done Items
+            </span>
             {newTodo()}
             {todoRenderer()}
         </div>
