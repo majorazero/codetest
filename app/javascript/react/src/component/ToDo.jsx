@@ -82,7 +82,7 @@ const ToDo = ({options}) => {
     }, [save]);
 
     return (
-        <div>
+        <div className={`todo ${done ? "todo-done": ""}`}>
             <h3>
                 {todo.id ? `To-Do ${todo.id}` : "Create New To-Do"}
                 {todo.id && <input type="checkbox" checked={done} onChange={handleDone}></input>}
@@ -91,9 +91,9 @@ const ToDo = ({options}) => {
             {edit && <textarea onChange={(e) => setDescription(e.target.value)} value={description}/>}
             <br/>
             {edit && <button onClick={() => setSaving(true)}>{todo.id ? "Save" : "Create"}</button>}
-            <div>
+            <div className="flex space-between">
                 {!edit && <button disabled={edit} onClick={() => setEdit(true)}>Edit</button>}
-                {!edit && <button disabled={edit} onClick={destroy}>Destroy</button>}
+                {!edit && <button className="destroy-btn" disabled={edit} onClick={destroy}>Destroy</button>}
             </div>
         </div>
     )
