@@ -22,7 +22,10 @@ const App = () => {
     const todoRenderer = () => {
         return todos.map((todo, i) => {
             const options = {
-                todo
+                todo,
+                index: i,
+                todos,
+                setTodos
             }
 
             return <ToDo key={`todo-${todo.id}-${i}`} options={options} />
