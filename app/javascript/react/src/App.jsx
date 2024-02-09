@@ -57,13 +57,18 @@ const App = () => {
 
     return (
         <div className="app">
-            <button disabled={addingNewTodo} onClick={() => setAddingNewTodo(true)}>
-                New Todo
-            </button>
-            <button onClick={getToDos}>Refresh</button>
-            <span>
-                <input type="checkbox" value={hideDoneItems} onChange={() => setHideDoneItems(!hideDoneItems)}/> Hide Done Items
-            </span>
+            <div className="flex space-between align-center">
+                <div>
+                    <button disabled={addingNewTodo} onClick={() => setAddingNewTodo(true)}>
+                        New Todo
+                    </button>
+                    <button onClick={getToDos}>Refresh</button>
+                </div>
+                <span className="flex align-center">
+                    <input type="checkbox" value={hideDoneItems} onChange={() => setHideDoneItems(!hideDoneItems)}/> 
+                    <span>Hide Done Items</span>
+                </span>
+            </div>
             {newTodo()}
             {todoRenderer()}
         </div>
