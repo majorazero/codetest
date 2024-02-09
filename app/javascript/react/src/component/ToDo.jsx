@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { organizeTodos } from "../utility/ToDo";
 
 const ToDo = ({options}) => {
     const {
@@ -51,13 +52,13 @@ const ToDo = ({options}) => {
         } else {
             const tempTodos = [...todos];
             tempTodos.splice(index, 1);
-            resp.done ? tempTodos.push(resp) : tempTodos.unshift(resp);
+            organizeTodos(tempTodos, resp);
             setTodos(tempTodos);
             setEdit(false);
             setSaving(false);
         }
     }
-
+    
     const destroy = async () => {
         const method = "DELETE";
         const route = `/to_dos/${todo.id}`;
