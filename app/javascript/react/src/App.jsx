@@ -5,6 +5,7 @@ import ToDo from "./component/ToDo";
 
 const App = () => {
     const [todos, setTodos] = useState([]);
+    const [addingNewTodo, setAddingNewTodo] = useState(false);
 
     useEffect(() => {
         getToDos();
@@ -32,8 +33,29 @@ const App = () => {
         })
     }
 
+    const newTodo = () => {
+        if (!addingNewTodo) return null;
+
+        const options = {
+            todo: {},
+            editing: true,
+            saveCallback: (response) => {
+                let newTodos = [...todos];
+                newTodos.unshift(response);
+                setTodos(newTodos);
+                setAddingNewTodo(false);
+            }
+        }
+
+        return <ToDo options={options} />;
+    }
+
     return (
         <div className="app">
+            <button disabled={addingNewTodo} onClick={() => setAddingNewTodo(true)}>
+                New Todo
+            </button>
+            {newTodo()}
             {todoRenderer()}
         </div>
     )

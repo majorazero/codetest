@@ -5,10 +5,12 @@ const ToDo = ({options}) => {
         todo,
         index,
         todos,
-        setTodos
+        setTodos,
+        editing,
+        saveCallback
     } = options;
 
-    const [edit, setEdit] = useState(false);
+    const [edit, setEdit] = useState(editing);
     const [saving, setSaving] = useState(false);
     const [done, setDone] = useState(!!todo.done);
     const [description, setDescription] = useState(todo.description);
@@ -27,8 +29,8 @@ const ToDo = ({options}) => {
     }
 
     const save = async () => {
-        const method = "PATCH"
-        const route = `/to_dos/${todo.id}`;
+        const method = todo.id ? "PATCH" : "POST";
+        const route = todo.id ? `/to_dos/${todo.id}` : "/to_dos";
         const response = await apiCall(method, route, {
             to_do: {
                 done,
@@ -44,12 +46,16 @@ const ToDo = ({options}) => {
             return;
         }
 
-        const tempTodos = [...todos];
-        tempTodos.splice(index, 1);
-        tempTodos.unshift(resp)
-        setTodos(tempTodos);
-        setEdit(false);
-        setSaving(false);
+        if (saveCallback) {
+            saveCallback(resp)
+        } else {
+            const tempTodos = [...todos];
+            tempTodos.splice(index, 1);
+            tempTodos.unshift(resp)
+            setTodos(tempTodos);
+            setEdit(false);
+            setSaving(false);
+        }
     }
 
     const destroy = async () => {
