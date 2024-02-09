@@ -22,4 +22,4 @@ test:
 
 production:
   <<: *default
-  database: todoprod
+  database: postgresql-tetrahedral-00661
