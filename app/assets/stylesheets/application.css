@@ -25,6 +25,11 @@
     justify-content: space-between;
 }
 
+input[type="checkbox"] {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 button {
     margin: 5px;
     border: none;
