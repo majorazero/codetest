@@ -51,7 +51,7 @@ const ToDo = ({options}) => {
         } else {
             const tempTodos = [...todos];
             tempTodos.splice(index, 1);
-            tempTodos.unshift(resp)
+            resp.done ? tempTodos.push(resp) : tempTodos.unshift(resp);
             setTodos(tempTodos);
             setEdit(false);
             setSaving(false);

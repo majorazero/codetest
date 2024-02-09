@@ -4,7 +4,8 @@ class ToDosController < ApplicationController
   # GET /to_dos or /to_dos.json
   def index
     @to_dos = ToDo.all
-    render json: @to_dos
+    data = @to_dos.order("updated_at DESC").sort_by{|a| a.done ? 1 : 0 }
+    render json: data
   end
 
   # GET /to_dos/1 or /to_dos/1.json
