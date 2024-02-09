@@ -63,7 +63,7 @@ const ToDo = ({options}) => {
         const route = `/to_dos/${todo.id}`;
         const response = await apiCall(method, route);
 
-        if (response.status >= 400) {
+        if (response.status <= 400) {
             alert(`To-do destroyed`)
             const tempTodos = [...todos];
             tempTodos.splice(index, 1);
