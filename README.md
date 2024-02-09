@@ -45,8 +45,8 @@ If you find that you have completed the earlier items with time to spare, please
 * [x] Deploy your TODO app to the internet so we can see it in action
     Link: https://roaming-hunger-codetest-800cafe9429a.herokuapp.com/
 * [x] Test it on Mobile device sizes.
-* [ ] Write unit tests for your code.
-* [ ] Edit this ReadMe with new suggestions for how to improve this code test
+* [x] Write unit tests for your code.
+* [x] Edit this ReadMe with new suggestions for how to improve this code test
 
 ### Dan's Suggestions
 * Any new features that could improve usability of the ToDo app for a user. 
