@@ -52,6 +52,20 @@ const ToDo = ({options}) => {
         setSaving(false);
     }
 
+    const destroy = async () => {
+        const method = "DELETE";
+        const route = `/to_dos/${todo.id}`;
+        const response = await apiCall(method, route);
+
+        if (response.status >= 400) {
+            alert(`To-do destroyed`)
+            const tempTodos = [...todos];
+            tempTodos.splice(index, 1);
+            setTodos(tempTodos);
+        }
+    }
+
+
     const handleDone = () => {
         setDone(!done);
         setSaving(true);
