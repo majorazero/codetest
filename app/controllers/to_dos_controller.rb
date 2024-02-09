@@ -4,6 +4,7 @@ class ToDosController < ApplicationController
   # GET /to_dos or /to_dos.json
   def index
     @to_dos = ToDo.all
+    render json: @to_dos
   end
 
   # GET /to_dos/1 or /to_dos/1.json
@@ -25,10 +26,8 @@ class ToDosController < ApplicationController
 
     respond_to do |format|
       if @to_do.save
-        format.html { redirect_to to_do_url(@to_do), notice: "To do was successfully created." }
         format.json { render :show, status: :created, location: @to_do }
       else
-        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @to_do.errors, status: :unprocessable_entity }
       end
     end
@@ -38,10 +37,8 @@ class ToDosController < ApplicationController
   def update
     respond_to do |format|
       if @to_do.update(to_do_params)
-        format.html { redirect_to to_do_url(@to_do), notice: "To do was successfully updated." }
         format.json { render :show, status: :ok, location: @to_do }
       else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @to_do.errors, status: :unprocessable_entity }
       end
     end
@@ -52,7 +49,6 @@ class ToDosController < ApplicationController
     @to_do.destroy!
 
     respond_to do |format|
-      format.html { redirect_to to_dos_url, notice: "To do was successfully destroyed." }
       format.json { head :no_content }
     end
   end
